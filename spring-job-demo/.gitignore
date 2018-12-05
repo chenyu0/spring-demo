@@ -23,3 +23,8 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+/yolo-basics/target
+/yolo-service/target
+/yolo-control/target
+/yolo-starter/target
