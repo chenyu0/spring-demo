@@ -1,7 +1,5 @@
-package com.yolo.models.vo;
+package com.yolo.models;
 
-
-import com.yolo.models.base.BaseMessage;
 
 public class ResponseMessage<T> extends BaseMessage<T> {
     public ResponseMessage() {

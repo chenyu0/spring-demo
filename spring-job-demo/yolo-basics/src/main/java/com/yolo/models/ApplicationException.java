@@ -1,4 +1,4 @@
-package com.yolo.models.vo;
+package com.yolo.models;
 
 import java.io.Serializable;
 

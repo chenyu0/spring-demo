@@ -1,4 +1,6 @@
-package com.yolo.models.base;
+package com.yolo.models;
+
+import com.yolo.models.base.ObjectModel;
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,7 +1,8 @@
-package com.yolo.models.base;
+package com.yolo.models;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.yolo.models.base.MessageModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

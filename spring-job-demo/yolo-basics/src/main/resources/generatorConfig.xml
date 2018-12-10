@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="application-dev.properties"/>
+    <classPathEntry location="${mysql-connection-location}" />
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+
+        <commentGenerator>
+            <!--  关闭自动生成的注释  -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.yolo.entities" targetProject="../yolo-basics/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="../yolo-inface/src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yolo.mapper" targetProject="../yolo-inface/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="rootInterface" value="com.baomidou.mybatisplus.core.mapper.BaseMapper"/>
+        </javaClientGenerator>
+
+        <table schema="start_record" tableName="picture"
+               enableInsert="false"
+               enableSelectByPrimaryKey="false"
+               enableSelectByExample="true"
+               enableUpdateByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false"
+        />
+
+    </context>
+</generatorConfiguration>
