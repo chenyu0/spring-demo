@@ -5,6 +5,6 @@ import com.yolo.entities.Picture;
 import com.yolo.entities.PictureExample;
 import java.util.List;
 
-public interface PictureMapper extends BaseMapper {
+public interface PictureMapper extends BaseMapper<Picture> {
     List<Picture> selectByExample(PictureExample example);
 }

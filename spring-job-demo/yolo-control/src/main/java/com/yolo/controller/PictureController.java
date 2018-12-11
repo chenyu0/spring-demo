@@ -1,12 +1,12 @@
 package com.yolo.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.yolo.entities.Picture;
 import com.yolo.models.base.MessageModel;
-import javax.annotation.Resource;
-
 import com.yolo.service.PictureService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 
 @RestController

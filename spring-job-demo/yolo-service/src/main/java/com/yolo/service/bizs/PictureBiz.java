@@ -1,13 +1,11 @@
 package com.yolo.service.bizs;
 
-import org.springframework.stereotype.Repository;
-
-import com.yolo.models.adapters.AdapterBiz;
-
 import com.yolo.entities.Picture;
-import com.yolo.models.base.MessageModel;
-import com.yolo.models.ResponseMessage;
 import com.yolo.mapper.PictureMapper;
+import com.yolo.models.ResponseMessage;
+import com.yolo.models.adapters.AdapterBiz;
+import com.yolo.models.base.MessageModel;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.List;
