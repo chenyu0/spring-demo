@@ -49,7 +49,7 @@ public class ShiroConfig {
         map.put("/index", "anon");
         map.put("/static/**", "anon");
 
-        map.put("/**", "anon");
+        map.put("/**", "authc");
 
         return map;
     }
