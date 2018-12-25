@@ -26,6 +26,7 @@ public class CodeUtil {
         output.write(FtlUtil.getFtl("templates/code_service.ftl", root).getBytes());
         output.flush();
         output.close();
+
         path = projectRootPath + "/yolo-service/src/main/java/" + product + "/service/bizs/" + module.replaceAll("\\.", "/") + "/";
         file = new File(path);
         file.mkdirs();
@@ -34,6 +35,7 @@ public class CodeUtil {
         output.write(FtlUtil.getFtl("templates/code_biz.ftl", root).getBytes());
         output.flush();
         output.close();
+
         path = projectRootPath + "/yolo-service/src/main/java/" + product + "/service/impls/" + module.replaceAll("\\.", "/") + "/";
         file = new File(path);
         file.mkdirs();
@@ -42,6 +44,7 @@ public class CodeUtil {
         output.write(FtlUtil.getFtl("templates/code_service_impl.ftl", root).getBytes());
         output.flush();
         output.close();
+
         path = projectRootPath + "/yolo-control/src/main/java/" + product + "/controller/" + module.replaceAll("\\.", "/") + "/";
         file = new File(path);
         file.mkdirs();
@@ -55,7 +58,7 @@ public class CodeUtil {
     @Test
     public void test() {
         try {
-            generateCode("E:\\Downloads\\project\\spring-demo\\spring-job-demo", "com/yolo", "", "Picture");
+            generateCode("E:\\Downloads\\project\\spring-demo\\spring-job-demo", "com/yolo", "", "SysAuthority");
         } catch (Exception e) {
             e.printStackTrace();
         }

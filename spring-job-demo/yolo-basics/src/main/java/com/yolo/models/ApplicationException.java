@@ -7,6 +7,7 @@ public class ApplicationException extends RuntimeException implements Serializab
     private Integer code;
 
     private String message;
+    private AppExceptionEnum appExceptionEnum;
 
     public ApplicationException() {
     }
@@ -16,9 +17,21 @@ public class ApplicationException extends RuntimeException implements Serializab
         this.message = message;
     }
 
+    public ApplicationException(Integer code, String message,AppExceptionEnum exceptionEnum) {
+        this.code = code;
+        this.message = message;
+        this.appExceptionEnum = exceptionEnum;
+    }
+
+
     public ApplicationException(String message) {
         this.code = -1;
         this.message = message;
+    }
+    public ApplicationException(String message,AppExceptionEnum exceptionEnum) {
+        this.code = -1;
+        this.message = message;
+        this.appExceptionEnum = exceptionEnum;
     }
 
     public Integer getCode() {

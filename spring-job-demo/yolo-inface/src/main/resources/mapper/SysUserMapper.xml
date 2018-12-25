@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yolo.mapper.PictureMapper">
-  <resultMap id="BaseResultMap" type="com.yolo.entities.Picture">
+<mapper namespace="com.yolo.mapper.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.yolo.entities.SysUser">
     <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="user_code" jdbcType="BIGINT" property="userCode" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="enable" jdbcType="CHAR" property="enable" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -38,16 +39,17 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, pic_url, create_time, update_time
+    id, user_code, user_name, password, real_name, enable
   </sql>
-  <select id="selectByExample" parameterType="com.yolo.entities.PictureExample" resultMap="BaseResultMap">
+
+  <select id="selectByExample" parameterType="com.yolo.entities.examples.SysUserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'false' as QUERYID,
     <include refid="Base_Column_List" />
-    from picture
+    from sys_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -55,4 +57,5 @@
       order by ${orderByClause}
     </if>
   </select>
+
 </mapper>

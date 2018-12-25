@@ -1,6 +1,8 @@
 package com.yolo.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
  * Time: 20:08
  */
 
-@RestController
+@Controller
 public class IndexController extends BaseController {
 
     @RequestMapping("index")
     public String index() {
-        return "index";
+        return "job_manager";
     }
 }

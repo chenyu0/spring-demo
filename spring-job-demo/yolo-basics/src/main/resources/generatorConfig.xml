@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <properties resource="application-dev.properties"/>
-    <classPathEntry location="${mysql-connection-location}" />
+    <!--<properties resource="application.properties"/>-->
+    <classPathEntry location="D:\\devSoft\\apache-maven-3.5.3\\repo\\mysql\\mysql-connector-java\\5.1.46\\mysql-connector-java-5.1.46.jar" />
     <context id="MySQLTables" targetRuntime="MyBatis3">
 
         <commentGenerator>
@@ -13,10 +13,10 @@
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
 
-        <jdbcConnection driverClass="${jdbc.driver}"
-                        connectionURL="${spring.datasource.url}"
-                        userId="${spring.datasource.username}"
-                        password="${spring.datasource.password}">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/sys_basics?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true&amp;serverTimezone=GMT%2B8&amp;"
+                        userId="root"
+                        password="root">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -36,7 +36,7 @@
             <property name="rootInterface" value="com.baomidou.mybatisplus.core.mapper.BaseMapper"/>
         </javaClientGenerator>
 
-        <table schema="start_record" tableName="picture"
+        <table schema="sys_basics" tableName="sys_file"
                enableInsert="false"
                enableSelectByPrimaryKey="false"
                enableSelectByExample="true"
