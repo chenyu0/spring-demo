@@ -36,7 +36,7 @@
             <property name="rootInterface" value="com.baomidou.mybatisplus.core.mapper.BaseMapper"/>
         </javaClientGenerator>
 
-        <table schema="sys_basics" tableName="sys_file"
+        <table schema="sys_basics" tableName="sys_task"
                enableInsert="false"
                enableSelectByPrimaryKey="false"
                enableSelectByExample="true"
