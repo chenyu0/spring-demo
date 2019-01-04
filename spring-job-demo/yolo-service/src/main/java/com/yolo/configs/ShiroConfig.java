@@ -46,10 +46,9 @@ public class ShiroConfig {
         map.put("/controller/SysUserController/login", "anon");
         map.put("/controller/SysUserController/register", "anon");
         map.put("/register", "anon");
-        map.put("/**", "anon");
         map.put("/static/**", "anon");
 
-//        map.put("/**", "authc");
+        map.put("/**", "authc");
 
         return map;
     }
