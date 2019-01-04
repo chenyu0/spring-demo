@@ -29,7 +29,7 @@ public class ShiroConfig {
 
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauthority");
-        //shiroFilterFactoryBean.setSuccessUrl("/index");
+        shiroFilterFactoryBean.setSuccessUrl("/index");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(buildFilterChainDefinitionMap());
 
@@ -46,10 +46,10 @@ public class ShiroConfig {
         map.put("/controller/SysUserController/login", "anon");
         map.put("/controller/SysUserController/register", "anon");
         map.put("/register", "anon");
-        map.put("/index", "anon");
+        map.put("/**", "anon");
         map.put("/static/**", "anon");
 
-        map.put("/**", "authc");
+//        map.put("/**", "authc");
 
         return map;
     }
@@ -64,7 +64,7 @@ public class ShiroConfig {
     }
 
     /**
-     * 身份认证realm; (这个需要自己写，账号密码校验；权限等)
+     * 身份认证realm
      *
      * @return
      */

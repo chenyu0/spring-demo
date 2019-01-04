@@ -4,26 +4,27 @@ import com.yolo.models.ResponseMessage;
 import com.yolo.utils.LogUtil;
 import org.springframework.stereotype.Service;
 
-import com.yolo.entities.${table_name};
+import com.yolo.entities.SysTask;
 import com.yolo.models.base.MessageModel;
-import com.yolo.service.${table_name}Service;
-import com.yolo.service.bizs.${table_name}Biz;
+import com.yolo.service.SysTaskService;
+import com.yolo.service.bizs.SysTaskBiz;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
-public class ${table_name}ServiceImpl implements ${table_name}Service {
+public class SysTaskServiceImpl implements SysTaskService {
 
     @Resource
-    private ${table_name}Biz ${table_name?uncap_first}Biz;
+    private SysTaskBiz sysTaskBiz;
 
 
     @Override
-    public MessageModel add(${table_name} ${table_name?uncap_first},String userId) {
+    public MessageModel add(SysTask sysTask,String userId) {
         ResponseMessage response = new ResponseMessage();
         try{
-            ${table_name?uncap_first}Biz.add(${table_name?uncap_first},userId);
+            sysTaskBiz.add(sysTask,userId);
             response.setSuccess(true).setMessage("添加成功");
         }catch (Exception e){
             LogUtil.error("添加失败："+e.getMessage());
@@ -36,8 +37,20 @@ public class ${table_name}ServiceImpl implements ${table_name}Service {
     public MessageModel listAll() {
         ResponseMessage response = new ResponseMessage();
         try{
-            List<${table_name}> ${table_name?uncap_first}s= ${table_name?uncap_first}Biz.listAll();
-            response.setSuccess(true).setMessage("查询成功").setObj(${table_name?uncap_first}s);
+            List<SysTask> sysTasks= sysTaskBiz.listAll();
+            response.setSuccess(true).setMessage("查询成功").setObj(sysTasks);
+        }catch (Exception e){
+            LogUtil.error("查询失败："+e.getMessage());
+            response.setSuccess(false).setMessage("查询失败："+e.getMessage());
+        }
+        return response;
+    }
+
+    @Override
+    public MessageModel excuteSQL(Map map) {
+        ResponseMessage response = new ResponseMessage();
+        try{
+            response.setSuccess(true).setMessage("查询成功").setObj(sysTaskBiz.excuteSql(map));
         }catch (Exception e){
             LogUtil.error("查询失败："+e.getMessage());
             response.setSuccess(false).setMessage("查询失败："+e.getMessage());

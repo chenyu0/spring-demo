@@ -3,7 +3,7 @@ package com.yolo.service.bizs;
 import org.springframework.stereotype.Repository;
 
 import com.yolo.models.adapters.AdapterBiz;
-
+import com.yolo.utils.IdUtil;
 import com.yolo.entities.${table_name};
 import com.yolo.mapper.${table_name}Mapper;
 
@@ -17,7 +17,8 @@ public class ${table_name}Biz extends AdapterBiz {
     private ${table_name}Mapper ${table_name?uncap_first}Mapper;
 
 
-    public Integer add(${table_name} ${table_name?uncap_first}) {
+    public Integer add(${table_name} ${table_name?uncap_first},String userId) {
+        ${table_name?uncap_first}.setId(IdUtil.uuid());
         return ${table_name?uncap_first}Mapper.insert(${table_name?uncap_first});
     }
 

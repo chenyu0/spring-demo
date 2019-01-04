@@ -19,7 +19,8 @@ public class ${table_name}Controller extends BaseController {
 
     @RequestMapping("add")
     public MessageModel add(${table_name} ${table_name?uncap_first}) {
-        return ${table_name?uncap_first}Service.add(${table_name?uncap_first});
+        String userId = this.getParam("userId");
+        return ${table_name?uncap_first}Service.add(${table_name?uncap_first},userId);
     }
 
     @RequestMapping("listAll")

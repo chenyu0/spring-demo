@@ -6,6 +6,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class BaseController {
@@ -46,5 +49,16 @@ public class BaseController {
 
     public String[] getParams(String name) {
         return this.getRequest().getParameterValues(name);
+    }
+
+    public Map getParamsMap(){
+        Map<String,Object> map = new HashMap<>();
+        Enumeration<String> parameterNames = this.getRequest().getParameterNames();
+        while (parameterNames.hasMoreElements()){
+            String key = parameterNames.nextElement();
+            String value = this.getRequest().getParameter(key);
+            map.put(key,value);
+        }
+        return map;
     }
 }

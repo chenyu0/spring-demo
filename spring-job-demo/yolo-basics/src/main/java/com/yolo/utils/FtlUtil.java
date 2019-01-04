@@ -47,22 +47,14 @@ public class FtlUtil {
             String result = getFtl(c, "_code", args);
             logger.debug("FreeMarker parse result: " + result);
             return result;
-        } catch (Exception var5) {
-            throw new RuntimeException(var5);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
     public static String getFtl(String ftl, Map args) throws Exception {
-        Template template = cfg.getTemplate(ftl);
-        StringWriter writer = new StringWriter();
-        BufferedWriter bf = new BufferedWriter(writer);
-        template.process(args, bf);
-        bf.flush();
-        writer.flush();
-        String html = writer.toString();
-        writer.close();
-        bf.close();
-        return html;
+        return getFtl(cfg,ftl,args);
     }
 
 
