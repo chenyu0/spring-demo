@@ -2,7 +2,6 @@ package com.yolo.service.bizs;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yolo.entities.SysUser;
-import com.yolo.entities.examples.SysUserExample;
 import com.yolo.mapper.SysUserMapper;
 import com.yolo.models.ApplicationException;
 import com.yolo.models.ParamException;
@@ -14,7 +13,7 @@ import com.yolo.utils.LogUtil;
 import com.yolo.utils.MD5Util;
 import com.yolo.utils.ParamUtil;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Repository;
@@ -50,16 +49,18 @@ public class SysUserBiz extends AdapterBiz {
 
     public SysUser login(String username, String password, String rememberMe) {
 
-        SysUser sysUser = new SysUser();
+        SysUser sysUser = null;
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()) {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             token.setRememberMe(Boolean.parseBoolean(rememberMe));
             try {
                 currentUser.login(token);
+                sysUser = new SysUser();
                 sysUser.setUserName(username);
-            } catch (AuthenticationException e) {
-                LogUtil.error(e.getMessage());
+            } catch (IncorrectCredentialsException e) {
+                LogUtil.error("账号密码不匹配");
+                throw new IncorrectCredentialsException("账号密码不匹配");
             }
         }
 
@@ -74,17 +75,17 @@ public class SysUserBiz extends AdapterBiz {
         }
         String password = sysUser.getPassword();
         String userName = sysUser.getUserName();
-        sysUser.setPassword(MD5Util.toMd5(password.getBytes(),userName.getBytes(),1024));
+        sysUser.setPassword(MD5Util.toMd5(password.getBytes(), userName.getBytes(), 1024));
         sysUser.setId(IdUtil.uuid());
         sysUser.setUserCode(IdUtil.longId());
         sysUser.setEnable("1");
 
         QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
-        wrapper.eq("user_name",userName);
+        wrapper.eq("user_name", userName);
         List<SysUser> users = sysUserMapper.selectList(wrapper);
 
-        if (!ParamUtil.isNullOrEmpty(users)){
-            throw new ApplicationException(-1,"此用户名已经存在，请更换用户名");
+        if (!ParamUtil.isNullOrEmpty(users)) {
+            throw new ApplicationException(-1, "此用户名已经存在，请更换用户名");
         }
 
         sysUserMapper.insert(sysUser);

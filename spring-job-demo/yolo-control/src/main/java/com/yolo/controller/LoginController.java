@@ -19,8 +19,15 @@ public class LoginController extends BaseController{
     @RequestMapping("/login")
     public String login(){
         //return "forward:/controller/SysUserController/login";
+        this.getRequest().setAttribute("message",this.getParam("message"));
         return "login";
     }
+    @RequestMapping("/")
+    public String index(){
+        //return "forward:/controller/SysUserController/login";
+        return "index";
+    }
+
     @RequestMapping("/unauthority")
     public String unauthority(){
         //return "forward:/controller/SysUserController/login";

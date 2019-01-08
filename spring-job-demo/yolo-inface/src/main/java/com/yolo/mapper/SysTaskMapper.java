@@ -5,7 +5,7 @@ import com.yolo.entities.examples.SysTaskExample;
 
 import java.util.List;
 
-public interface SysTaskMapper extends BaseMapper<SysTask> {
+public interface SysTaskMapper extends BasicMapper<SysTask> {
     List<SysTask> selectByExampleWithBLOBs(SysTaskExample example);
 
     List<SysTask> selectByExample(SysTaskExample example);

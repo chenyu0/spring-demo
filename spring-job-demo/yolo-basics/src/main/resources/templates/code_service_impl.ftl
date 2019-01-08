@@ -26,8 +26,9 @@ public class ${table_name}ServiceImpl implements ${table_name}Service {
             ${table_name?uncap_first}Biz.add(${table_name?uncap_first},userId);
             response.setSuccess(true).setMessage("添加成功");
         }catch (Exception e){
-            LogUtil.error("添加失败："+e.getMessage());
             response.setSuccess(false).setMessage("添加失败："+e.getMessage());
+            LogUtil.error("添加失败："+e.getMessage());
+            e.printStackTrace();
         }
         return response;
     }
@@ -39,8 +40,9 @@ public class ${table_name}ServiceImpl implements ${table_name}Service {
             List<${table_name}> ${table_name?uncap_first}s= ${table_name?uncap_first}Biz.listAll();
             response.setSuccess(true).setMessage("查询成功").setObj(${table_name?uncap_first}s);
         }catch (Exception e){
-            LogUtil.error("查询失败："+e.getMessage());
             response.setSuccess(false).setMessage("查询失败："+e.getMessage());
+            LogUtil.error("查询失败："+e.getMessage());
+            e.printStackTrace();
         }
         return response;
     }

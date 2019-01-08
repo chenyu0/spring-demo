@@ -58,7 +58,7 @@ public class CodeUtil {
     @Test
     public void test() {
         try {
-            generateCode("E:\\Downloads\\project\\spring-demo\\spring-job-demo", "com/yolo", "", "SysAuthority");
+            generateCode("E:\\Downloads\\project\\spring-demo\\spring-job-demo", "com/yolo", "", "XXX");
         } catch (Exception e) {
             e.printStackTrace();
         }

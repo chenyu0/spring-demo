@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class IndexController extends BaseController {
 
-    @RequestMapping("index")
+    @RequestMapping("job_manager")
     public String index() {
         return "job_manager";
     }

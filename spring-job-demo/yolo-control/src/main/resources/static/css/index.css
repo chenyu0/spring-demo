@@ -1,0 +1,44 @@
+
+.main {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    background-color: #f2f6f9;
+}
+.sidebar-left2 {
+    position: absolute;
+    top: 8%;
+    left: 0;
+    bottom: 0;
+    width: 12%;
+    height: 91%;
+    z-index: 2000
+}
+
+.header-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 8%;
+    z-index: 2000
+}
+.main_container{
+    position: absolute;
+    top: 8%;
+    left: 12%;
+    bottom: 0;
+    width: 87%;
+    height: 90%;
+    z-index: 2000;
+    margin-left: 0.5%;
+    margin-top: 0.5%;
+    margin-right: 0.5%;
+    box-sizing:border-box;
+    background-color: white;
+}

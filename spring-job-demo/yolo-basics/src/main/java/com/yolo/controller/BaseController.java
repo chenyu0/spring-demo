@@ -1,5 +1,10 @@
 package com.yolo.controller;
 
+import com.yolo.entities.SysUser;
+import com.yolo.models.ApplicationException;
+import com.yolo.utils.ParamUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -49,6 +54,15 @@ public class BaseController {
 
     public String[] getParams(String name) {
         return this.getRequest().getParameterValues(name);
+    }
+
+    public SysUser currentLoginUser(){
+        Subject subject = SecurityUtils.getSubject();
+        if (!subject.isAuthenticated()){
+            throw new ApplicationException("用户尚未登录！！");
+        }
+        SysUser principal = (SysUser) subject.getPrincipal();
+        return ParamUtil.isNullOrEmpty(principal)?(SysUser) getSession().getAttribute("user"):principal;
     }
 
     public Map getParamsMap(){

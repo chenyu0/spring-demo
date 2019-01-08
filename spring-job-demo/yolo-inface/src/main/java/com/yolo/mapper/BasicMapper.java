@@ -1,5 +1,7 @@
 package com.yolo.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +13,7 @@ import java.util.Map;
  */
 
 
-public interface BaseMapper<T> extends com.baomidou.mybatisplus.core.mapper.BaseMapper<T> {
+public interface BasicMapper<T> extends BaseMapper<T> {
 
     List excuteSQL(Map params);
 

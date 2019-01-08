@@ -33,10 +33,10 @@
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.yolo.mapper" targetProject="../yolo-inface/src/main/java">
             <property name="enableSubPackages" value="true"/>
-            <property name="rootInterface" value="com.baomidou.mybatisplus.core.mapper.BaseMapper"/>
+            <property name="rootInterface" value="com.yolo.mapper.BasicMapper"/>
         </javaClientGenerator>
 
-        <table schema="sys_basics" tableName="sys_task"
+        <table schema="sys_basics" tableName="center_sql"
                enableInsert="false"
                enableSelectByPrimaryKey="false"
                enableSelectByExample="true"

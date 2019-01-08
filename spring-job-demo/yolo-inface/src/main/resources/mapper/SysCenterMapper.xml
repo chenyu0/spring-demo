@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yolo.mapper.SysCenterMapper">
+  <resultMap id="BaseResultMap" type="com.yolo.entities.SysCenter">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="center_code" jdbcType="VARCHAR" property="centerCode" />
+    <result column="center_name" jdbcType="VARCHAR" property="centerName" />
+    <result column="center_type" jdbcType="CHAR" property="centerType" />
+    <result column="center_datasource" jdbcType="CHAR" property="centerDatasource" />
+    <result column="center_parent_code" jdbcType="VARCHAR" property="centerParentCode" />
+    <result column="enable_cache" jdbcType="CHAR" property="enableCache" />
+    <result column="enble_constant" jdbcType="CHAR" property="enbleConstant" />
+    <result column="data_type" jdbcType="CHAR" property="dataType" />
+    <result column="param" jdbcType="VARCHAR" property="param" />
+    <result column="request_param" jdbcType="VARCHAR" property="requestParam" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, center_code, center_name, center_type, center_datasource, center_parent_code, 
+    enable_cache, enble_constant, data_type, param, request_param, create_time, create_user, 
+    update_time, update_user
+  </sql>
+  <select id="selectByExample" parameterType="com.yolo.entities.examples.SysCenterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sys_center
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
