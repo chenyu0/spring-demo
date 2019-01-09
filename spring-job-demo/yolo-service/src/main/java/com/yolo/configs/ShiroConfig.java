@@ -27,9 +27,9 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shirFilter() {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 
-        shiroFilterFactoryBean.setLoginUrl("/login");
+//        shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauthority");
-        shiroFilterFactoryBean.setSuccessUrl("/index");
+//        shiroFilterFactoryBean.setSuccessUrl("/index");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(buildFilterChainDefinitionMap());
 

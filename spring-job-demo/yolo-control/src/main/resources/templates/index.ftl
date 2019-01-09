@@ -55,96 +55,50 @@
                             class="fa fa-area-chart"></span> Glance<span
                             class="dashboard_text">Design dashboard</span></a></h1>
                 </div>
+
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="sidebar-menu">
                         <li class="header">导航栏</li>
                         <li class="treeview">
-                            <a href="index.html">
+                            <a href="/">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-laptop"></i>
-                                <span>Components</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="javascript:switchMenu('unauthority');"><i class="fa fa-angle-right"></i> Grids</a></li>
-                                <li><a href="media.html"><i class="fa fa-angle-right"></i> Media Css</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="charts.html">
-                                <i class="fa fa-pie-chart"></i>
-                                <span>Charts</span>
-                                <span class="label label-primary pull-right">new</span>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-laptop"></i>
-                                <span>UI Elements</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="general.html"><i class="fa fa-angle-right"></i> General</a></li>
-                                <li><a href="icons.html"><i class="fa fa-angle-right"></i> Icons</a></li>
-                                <li><a href="buttons.html"><i class="fa fa-angle-right"></i> Buttons</a></li>
-                                <li><a href="typography.html"><i class="fa fa-angle-right"></i> Typography</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="widgets.html">
-                                <i class="fa fa-th"></i> <span>Widgets</span>
-                                <small class="label pull-right label-info">08</small>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-edit"></i> <span>Forms</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="forms.html"><i class="fa fa-angle-right"></i> General Forms</a></li>
-                                <li><a href="validation.html"><i class="fa fa-angle-right"></i> Form Validations</a>
+                        <#assign menu_parent_code =0/>
+                        <#list response['menus'] as parent>
+                            <#if parent_index != 0 && menu_parent_code == 0>
+                                <#assign menu_parent_code =0/>
                                 </li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-table"></i> <span>Tables</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="tables.html"><i class="fa fa-angle-right"></i> Simple tables</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-envelope"></i> <span>Mailbox </span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                                <small class="label pull-right label-info1">08</small>
-                                <span class="label label-primary1 pull-right">02</span></a>
-                            <ul class="treeview-menu">
-                                <li><a href="inbox.html"><i class="fa fa-angle-right"></i> Mail Inbox </a></li>
-                                <li><a href="compose.html"><i class="fa fa-angle-right"></i> Compose Mail </a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-folder"></i> <span>Examples</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="login.html"><i class="fa fa-angle-right"></i> Login</a></li>
-                                <li><a href="signup.html"><i class="fa fa-angle-right"></i> Register</a></li>
-                                <li><a href="404.html"><i class="fa fa-angle-right"></i> 404 Error</a></li>
-                                <li><a href="500.html"><i class="fa fa-angle-right"></i> 500 Error</a></li>
-                                <li><a href="blank-page.html"><i class="fa fa-angle-right"></i> Blank Page</a></li>
-                            </ul>
-                        </li>
+                            </#if>
+                            <#if parent['parentCode']?number == 0>
+                                <#assign menu_parent_code = parent['menuCode']?number/>
+                                <li class="treeview">
+                                    <a href="javascript:switchMenu('${parent['menuUrl']}');">
+                                        <i class="fa fa-laptop"></i>
+                                        <span>${parent['menuName']}</span>
+                                        <i id="hasSubMenu_${menu_parent_code}" class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                <#assign menuIndex = 0/>
+                                <#list response['menus'] as child>
+                                    <#if child['parentCode']?number != 0 && child['parentCode'] ==  parent['menuCode']>
+                                        <#if menuIndex == 0>
+                                            <ul class="treeview-menu">
+                                        </#if>
+
+                                        <li><a href="javascript:switchMenu('${child['menuUrl']}');"><i class="fa fa-angle-right"></i> ${child['menuName']}</a></li>
+                                        <#assign menuIndex = menuIndex + 1/>
+                                    </#if>
+                                </#list>
+                                <#if menuIndex != 0>
+                                    </ul>
+                                <#else>
+                                    <script type="text/javascript">
+                                        document.getElementById("hasSubMenu_${menu_parent_code}").style.display="none";
+                                    </script>
+                                </#if>
+                            </#if>
+                        </#list>
+
                         <li class="header">LABELS</li>
                         <li><a href="#"><i class="fa fa-angle-right text-red"></i> <span>Important</span></a></li>
                         <li><a href="#"><i class="fa fa-angle-right text-yellow"></i> <span>Warning</span></a></li>
@@ -342,7 +296,7 @@
                             <div class="profile_img">
                                 <span class="prfil-img"><img src="/static/img/2.jpg" alt=""> </span>
                                 <div class="user-name">
-                                    <p>Admin Name</p>
+                                    <p>${response['user']['realName']!'admin'}</p>
                                     <span>Administrator</span>
                                 </div>
                                 <i class="fa fa-angle-down lnr"></i>
@@ -363,10 +317,11 @@
         </div>
         <div class="clearfix"></div>
     </header>
-<#-- main content -->
+    <#-- main content -->
     <div id="page-wrapper">
         <div id="main_content" class="main-page">
-            <iframe id="content" align="center" style="padding: 0px; width: 100%; height: 800px;" src="" frameborder="no"></iframe>
+            <iframe id="content" align="center" style="padding: 0px; width: 100%; height: 100%;" src=""
+                    frameborder="no"></iframe>
         </div>
     </div>
     <!--footer-->
@@ -418,7 +373,7 @@
     $('.sidebar-menu').SidebarNav();
 
     function switchMenu(url) {
-        $("#content").attr("src",url);
+        $("#content").attr("src", url);
     }
 
 </script>

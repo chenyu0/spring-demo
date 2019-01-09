@@ -45,7 +45,7 @@ public class SysUserController extends BaseController {
         MessageModel login = sysUserService.login(username, password, rememberMe);
         if (ParamUtil.isNullOrEmpty(login.getObj())){
             model.addFlashAttribute("message",((ResponseMessage)login).toMessage());
-            return "redirect:/login";
+            return "forward:/login";
         }else{
             Subject subject = SecurityUtils.getSubject();
             SysUser sysUser = (SysUser) subject.getPrincipal();
