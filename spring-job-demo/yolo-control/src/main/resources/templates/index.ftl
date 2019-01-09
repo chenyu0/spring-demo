@@ -319,7 +319,7 @@
     </header>
     <#-- main content -->
     <div id="page-wrapper">
-        <div id="main_content" class="main-page">
+        <div id="main_content" class="main-page" style="width: 86.5%;height: 85%;position:absolute;">
             <iframe id="content" align="center" style="padding: 0px; width: 100%; height: 100%;" src=""
                     frameborder="no"></iframe>
         </div>
@@ -373,7 +373,7 @@
     $('.sidebar-menu').SidebarNav();
 
     function switchMenu(url) {
-        $("#content").attr("src", url);
+        $("#content").attr("src", "job"+url+".ftl");
     }
 
 </script>
