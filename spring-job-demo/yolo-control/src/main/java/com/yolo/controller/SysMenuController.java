@@ -25,9 +25,11 @@ public class SysMenuController extends BaseController {
         return sysMenuService.add(sysMenu);
     }
 
-    @RequestMapping("listAll")
-    public MessageModel listAll() {
-        return sysMenuService.listAll();
+    @RequestMapping("listPage")
+    public MessageModel listPage() {
+        int pageSize = Integer.parseInt(this.getParam("rows"));
+        int pageIndex = Integer.parseInt(this.getParam("page"));
+        return sysMenuService.listPage(pageSize,pageIndex);
     }
 
     @RequestMapping("listMenus")

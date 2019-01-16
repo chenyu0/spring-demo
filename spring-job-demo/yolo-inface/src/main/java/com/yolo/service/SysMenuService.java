@@ -8,7 +8,7 @@ public interface SysMenuService {
 
     MessageModel add(SysMenu sysMenu);
 
-    MessageModel listAll();
+    MessageModel listPage(int pageSize, int pageIndex);
 
     MessageModel listMenus(String userId);
 }

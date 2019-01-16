@@ -56,8 +56,7 @@ public class SysUserBiz extends AdapterBiz {
             token.setRememberMe(Boolean.parseBoolean(rememberMe));
             try {
                 currentUser.login(token);
-                sysUser = new SysUser();
-                sysUser.setUserName(username);
+                sysUser = (SysUser) SecurityUtils.getSubject().getPrincipal();
             } catch (IncorrectCredentialsException e) {
                 LogUtil.error("账号密码不匹配");
                 throw new IncorrectCredentialsException("账号密码不匹配");

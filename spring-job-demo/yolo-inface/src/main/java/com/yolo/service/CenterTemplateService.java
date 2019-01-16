@@ -9,4 +9,6 @@ public interface CenterTemplateService {
     MessageModel add(CenterTemplate centerTemplate,String userId);
 
     MessageModel listAll();
+
+    MessageModel listByCenter(String centerId,Integer pageSize,Integer pageIndex);
 }

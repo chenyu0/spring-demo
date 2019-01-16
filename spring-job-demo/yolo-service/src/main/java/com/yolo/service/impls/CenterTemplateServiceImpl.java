@@ -1,5 +1,6 @@
 package com.yolo.service.impls;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yolo.models.ResponseMessage;
 import com.yolo.utils.LogUtil;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,20 @@ public class CenterTemplateServiceImpl implements CenterTemplateService {
         ResponseMessage response = new ResponseMessage();
         try{
             List<CenterTemplate> centerTemplates= centerTemplateBiz.listAll();
+            response.setSuccess(true).setMessage("查询成功").setObj(centerTemplates);
+        }catch (Exception e){
+            response.setSuccess(false).setMessage("查询失败："+e.getMessage());
+            LogUtil.error("查询失败："+e.getMessage());
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    @Override
+    public MessageModel listByCenter(String centerId,Integer pageSize,Integer pageIndex) {
+        ResponseMessage response = new ResponseMessage();
+        try{
+            IPage<CenterTemplate> centerTemplates= centerTemplateBiz.listByCenter(centerId,pageSize,pageIndex);
             response.setSuccess(true).setMessage("查询成功").setObj(centerTemplates);
         }catch (Exception e){
             response.setSuccess(false).setMessage("查询失败："+e.getMessage());

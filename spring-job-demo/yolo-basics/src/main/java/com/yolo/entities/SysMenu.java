@@ -15,6 +15,16 @@ public class SysMenu {
 
     private String menuUrl;
 
+    private String icon;
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     private String enable;
 
     public String getId() {

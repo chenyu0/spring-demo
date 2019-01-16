@@ -19,7 +19,7 @@ public class ${table_name}Controller extends BaseController {
 
     @RequestMapping("add")
     public MessageModel add(${table_name} ${table_name?uncap_first}) {
-        String userId = this.getParam("userId");
+        String userId = this.currentLoginUser().getId();
         return ${table_name?uncap_first}Service.add(${table_name?uncap_first},userId);
     }
 

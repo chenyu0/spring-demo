@@ -1,5 +1,6 @@
 package com.yolo.service.impls;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yolo.models.ResponseMessage;
 import com.yolo.utils.LogUtil;
 import org.springframework.stereotype.Service;
@@ -34,10 +35,10 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
     @Override
-    public MessageModel listAll() {
+    public MessageModel listPage(int pageSize, int pageIndex) {
         ResponseMessage response = new ResponseMessage();
         try {
-            List<SysMenu> sysMenus = sysMenuBiz.listAll();
+            IPage<SysMenu> sysMenus = sysMenuBiz.listPage(pageSize,pageIndex);
             response.setSuccess(true).setMessage("查询成功").setObj(sysMenus);
         }catch (Exception e){
             LogUtil.error("查询失败："+e.getMessage());

@@ -1,5 +1,7 @@
 package com.yolo.service.bizs;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yolo.entities.SysMenu;
 import com.yolo.mapper.SysMenuMapper;
 import com.yolo.models.adapters.AdapterBiz;
@@ -19,8 +21,9 @@ public class SysMenuBiz extends AdapterBiz {
         return sysMenuMapper.insert(sysMenu);
     }
 
-    public List<SysMenu> listAll() {
-        return sysMenuMapper.selectList(null);
+    public IPage<SysMenu> listPage(int pageSize, int pageIndex) {
+        IPage page = new Page(pageIndex,pageSize);
+        return sysMenuMapper.selectPage(page,null);
     }
 
     public List<SysMenu> listMenus(String userId) {

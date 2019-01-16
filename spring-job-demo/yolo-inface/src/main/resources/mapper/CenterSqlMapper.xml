@@ -83,4 +83,13 @@
       order by ${orderByClause}
     </if>
   </select>
+
+    <select id="selectSQLByKey" resultType="com.yolo.entities.CenterSql">
+        select a.* from center_sql a
+        inner join center_template b on a.template_id = b.id
+        inner join sys_center c on b.center_id = c.id
+        where c.id = #{centerId}
+        and b.template_index = #{templateIndex}
+        and a.sql_code = #{sqlCode}
+    </select>
 </mapper>

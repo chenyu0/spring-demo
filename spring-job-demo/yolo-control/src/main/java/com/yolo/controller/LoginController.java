@@ -7,6 +7,8 @@ import com.yolo.utils.LogUtil;
 import com.yolo.utils.ParamUtil;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sun.rmi.runtime.Log;
@@ -71,5 +73,15 @@ public class LoginController extends BaseController {
     public String logout() {
         SecurityUtils.getSubject().logout();
         return "登出成功";
+    }
+
+    @GetMapping("/menu/{menu}")
+    public String transMenu(@PathVariable("menu") String menu) {
+        String isStatic = this.getParam("static");
+        if (ParamUtil.isNullOrEmpty(isStatic)) {
+            return "/job/" + menu + ".ftl";
+        } else {
+            return "redirect:/" + menu;
+        }
     }
 }

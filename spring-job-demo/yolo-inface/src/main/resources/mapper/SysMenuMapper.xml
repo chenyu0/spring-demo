@@ -7,6 +7,7 @@
         <result column="menu_name" jdbcType="VARCHAR" property="menuName"/>
         <result column="parent_code" jdbcType="BIGINT" property="parentCode"/>
         <result column="menu_url" jdbcType="VARCHAR" property="menuUrl"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="enable" jdbcType="CHAR" property="enable"/>
     </resultMap>
     <sql id="Example_Where_Clause">
@@ -41,7 +42,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-      id, menu_code, menu_name, parent_code, menu_url, enable
+      id, menu_code, menu_name, parent_code, menu_url, icon, enable
     </sql>
     <select id="selectByExample" parameterType="com.yolo.entities.examples.SysMenuExample" resultMap="BaseResultMap">
         select

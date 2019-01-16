@@ -6,6 +6,7 @@ import com.yolo.models.base.MessageModel;
 import com.yolo.service.SysCenterService;
 import com.yolo.utils.ParamUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -32,10 +33,11 @@ public class SysCenterController extends BaseController {
         return sysCenterService.listAll();
     }
 
+    @ResponseBody
     @RequestMapping("listPage")
     public MessageModel listPage() {
-        int pageSize = Integer.parseInt(this.getParam("pageSize"));
-        int pageIndex = Integer.parseInt(this.getParam("pageIndex"));
+        int pageSize = Integer.parseInt(this.getParam("rows"));
+        int pageIndex = Integer.parseInt(this.getParam("page"));
         return sysCenterService.listPage(pageSize,pageIndex);
     }
 }
