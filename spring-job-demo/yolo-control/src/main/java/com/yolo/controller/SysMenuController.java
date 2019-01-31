@@ -36,6 +36,9 @@ public class SysMenuController extends BaseController {
     public MessageModel listMenus(){
         String userId = this.getParam("userId");
         if (ParamUtil.isNullOrEmpty(userId)){
+            userId = this.currentLoginUser().getId();
+        }
+        if (ParamUtil.isNullOrEmpty(userId)){
             throw new ParamException(-1,"用户Id参数不可为空");
         }
         return sysMenuService.listMenus(userId);
