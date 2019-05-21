@@ -61,4 +61,8 @@ public class FileBiz extends AdapterBiz {
             sysFileMapper.delete(wrapper);
         }
     }
+
+    public void download(){
+
+    }
 }
